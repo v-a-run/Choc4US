@@ -68,3 +68,39 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# APP Specs
+
+# FRONTEND
+
+HTML, CSS, JS
+
+1. Home Page -> contains Menu bar with link to following pages:
+2. About -> (info)
+3. Our Chocolate (Products)
+4. History -> orders history (customers)
+5. Orders -> orders to prepare (staff)
+6. Management -> user management (admin)
+7. Login
+8. Register
+
+# BACKEND
+
+Node.js, Express.js
+
+1. /
+2. /about
+3. /info
+4. /history
+5. /orders
+6. /admin
+7. /login
+8. /register
+
+# DATABASE
+
+MongoDB
+
+1. Users (Name, email, password, history)
+2. Orders (OrderNo, OrderName, Price, TypeOfOrder)
+3. Stock (IngredientName, Quantity)
