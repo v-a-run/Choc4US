@@ -71,33 +71,31 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # APP Specs
 
-# FRONTEND
+## FRONTEND
 
 HTML, CSS, JS
 
-1. Home Page -> contains Menu bar with link to following pages:
-2. About -> (info)
-3. Our Chocolate (Products)
-4. History -> orders history (customers)
-5. Orders -> orders to prepare (staff)
-6. Management -> user management (admin)
-7. Login
-8. Register
+1. Home Page -> contains Menu bar and Info
+2. Our Chocolate (Products)
+3. History -> orders history (customers)
+4. Orders -> orders to prepare (staff)
+5. Management -> user management (admin)
+6. Login
+7. Register
 
-# BACKEND
+## BACKEND
 
 Node.js, Express.js
 
 1. /
-2. /about
-3. /info
-4. /history
-5. /orders
-6. /admin
-7. /login
-8. /register
+2. /products
+3. /history
+4. /orders
+5. /admin
+6. /login
+7. /register
 
-# DATABASE
+## DATABASE
 
 MongoDB
 
