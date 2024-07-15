@@ -1,5 +1,5 @@
-import express from "express";
-import Order from "../models/Order";
+const express = require("express");
+const Order = require("../models/Order");
 
 const router = express.Router();
 
@@ -25,10 +25,13 @@ router.post("/", async (req, res) => {
 });
 
 // Get order by orderNo
-router.get("/", async (req, res) => {
-  const { orderNo } = req.body;
+router.get("/:orderNo", async (req, res) => {
+  const { orderNo } = req.params;
   try {
     const order = await Order.find({ orderNo: orderNo });
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
     res.status(200).json(order);
   } catch (error) {
     res.status(500).json({ message: "Error fetching order", error });
@@ -36,5 +39,15 @@ router.get("/", async (req, res) => {
 });
 
 // Get all orders
+router.get("/", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.status(200).json(orders);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching orders", error: error.message });
+  }
+});
 
 module.exports = router;

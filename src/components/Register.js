@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
+import { registerUser } from "../api";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,13 +9,17 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [mobile, setMobile] = useState("");
 
-  const handleSubmit = (e) => {
+  //   const handleChange = (e) => {};
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`firstName`, firstName);
-    console.log(`lastName`, lastName);
-    console.log(`email`, email);
-    console.log(`password`, password);
-    console.log(`mobile`, mobile);
+    try {
+      const userData = { firstName, lastName, email, password, mobile };
+      const { data } = await registerUser(userData);
+      console.log("User registered", data);
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
   };
   return (
     <div className="form-container">

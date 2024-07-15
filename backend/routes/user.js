@@ -1,13 +1,23 @@
-import express from "express";
-import User from "../models/User";
+const express = require("express");
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
 
 const router = express.Router();
 
 // Register
 router.post("/register", async (req, res) => {
-  const { firstName, lastName, email, password, mobile } = req.body;
+  const { firstName, lastName, email, password, mobile, userType } = req.body;
   try {
-    const newUser = new User({ firstName, lastName, email, password, mobile });
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+      mobile,
+      userType,
+    });
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
@@ -19,8 +29,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email, password });
-    if (user) {
+    const user = await User.findOne({ email });
+    if (user && (await bcrypt.compare(password, user.password))) {
       res.status(200).json(user);
     } else {
       res.status(401).json({ message: "Invalid email or password" });

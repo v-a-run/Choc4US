@@ -1,5 +1,5 @@
-import express from "express";
-import Chocolate from "../models/Chocolate";
+const express = require("express");
+const Chocolate = require("../models/Chocolate");
 
 const router = express.Router();
 

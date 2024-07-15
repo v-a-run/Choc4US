@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
+import { loginUser } from "../api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`Email`, email);
-    console.log(`password`, password);
+    try {
+      const response = await loginUser({ email, password });
+      console.log("User logged in :", response.data);
+      // Redirect
+    } catch (error) {
+      console.error("Error logging in: ", error);
+    }
   };
 
   return (
