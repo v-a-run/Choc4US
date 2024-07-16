@@ -5,10 +5,16 @@ const router = express.Router();
 
 // Add chocolate
 router.post("/", async (req, res) => {
-  const { name, description, price, image } = req.body;
+  const { name, quantity, description, price, image } = req.body;
 
   try {
-    const newChocolate = new Chocolate({ name, description, price, image });
+    const newChocolate = new Chocolate({
+      name,
+      quantity,
+      description,
+      price,
+      image,
+    });
     await newChocolate.save();
     res.status(201).json(newChocolate);
   } catch (error) {
@@ -21,6 +27,7 @@ router.get("/", async (req, res) => {
   try {
     const chocolates = await Chocolate.find();
     res.status(200).json(chocolates);
+    console.log(`chocolates`, chocolates);
   } catch (error) {
     res.status(500).json({ message: "Error fetching chocolates", error });
   }

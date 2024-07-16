@@ -99,3 +99,8 @@ code {
 .btn:hover {
   background-color: #0056b3;
 }
+
+/* Card */
+.card {
+  border: 1px solid red;
+}

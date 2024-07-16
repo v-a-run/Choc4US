@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 import { registerUser } from "../api";
 
@@ -8,22 +9,26 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mobile, setMobile] = useState("");
+  const [error, setError] = useState("");
 
-  //   const handleChange = (e) => {};
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const userData = { firstName, lastName, email, password, mobile };
-      const { data } = await registerUser(userData);
-      console.log("User registered", data);
+      const response = await registerUser(userData);
+      console.log(`response.data`, response.data);
+      navigate("/login");
     } catch (error) {
       console.error("Error registering user:", error);
+      setError(error);
     }
   };
   return (
     <div className="form-container">
       <h1>Register</h1>
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <InputField
           label="First Name"
